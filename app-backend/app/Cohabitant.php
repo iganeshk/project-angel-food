@@ -1,0 +1,36 @@
+<?php
+
+namespace App;
+
+use App\BaseModel;
+
+class Cohabitant extends BaseModel
+{
+
+    protected $table = 'cohabitant';
+    protected $primaryKey = 'cohabitantId';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    'cohabitantId',
+    'cohabitantFirstName',
+    'cohabitantLastName',
+    'cohabitantAge', 
+    'relationship', 
+    'isCaretaker', 'mealRequired'
+    ];
+    public function user() {
+        return $this->hasOne('\App\User','site_user_cohabitant_map','cohabitantId' ,'uid');
+    }
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+   
+}
