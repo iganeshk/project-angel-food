@@ -5,11 +5,11 @@
  - add hadMany to all relations
 */
 
-$router->get('/user/{id}', function($id){
+$router->get('/user/{id}',['middleware' => 'auth', function($id){
 	return \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'caseManager', 'foodPrepFacilities','specialNeeds','cohabitants','medicalDiagnosises')->where('uid', $id)->get();
-});
+}]);
 
-$router->get('/user', function(\Illuminate\Http\Request $request){
+$router->get('/user',['middleware' => 'auth', function(\Illuminate\Http\Request $request){
 	$fName = $request->get('fname');
 	$lName = $request->get('lname');
 	$uid = $request->get('userId');
@@ -24,16 +24,17 @@ $router->get('/user', function(\Illuminate\Http\Request $request){
     	$where[] = ['uid', '=', $uid];
     }
 	return !empty($where) ? \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'caseManager', 'foodPrepFacilities','specialNeeds','cohabitants','medicalDiagnosises')->where($where)->get() : [];
-});
+}]);
 
-$router->get('/users', function () {
+$router->get('/users',['middleware' => 'auth', function () {
     return \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'caseManager', 'foodPrepFacilities','specialNeeds', 'cohabitants','medicalDiagnosises')->get();
-});
-$router -> post('/user', function (\Illuminate\Http\Request $request){
+}]);
+$router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Request $request){
 	$fName = $request->json()->get('fname');
 	$lName = $request->json()->get('lname');
 	$email = $request->json()->get('email');
-	$pwd = $request->json()->get('pwd');
+	$username = $request->json()->get('username');
+	$password = $request->json()->get('password');
 	$dob = $request->json()->get('dob');
 	$ssn = $request->json()->get('ssn');
 	$mobPhone = $request->json()->get('mobPhone');
@@ -71,6 +72,8 @@ $router -> post('/user', function (\Illuminate\Http\Request $request){
 	$user->fname = $fName;
 	$user->lname = $lName;
 	$user->email = $email;
+	$user->username = $username;
+	$user->password = sha1($password);
 	$user->dob = $dob;
 	$user->ssn = $ssn;
 	$user->mobPhone = $mobPhone;
@@ -120,9 +123,9 @@ $router -> post('/user', function (\Illuminate\Http\Request $request){
 
     return response()->json(array('success' => true, 'user' => $user), 200);
 	
-});
+}]);
 
-$router->delete('/user/{id}', function ($id){
+$router->delete('/user/{id}',['middleware' => 'auth', function ($id){
 	$success= App\User::where('uid', $id)->delete();
 	return response()->json(array('success' => $success), 200);
-});
+}]);

@@ -2,15 +2,15 @@
 
 
 // address endpoints
-$router->get('/addresses', function () {
+$router->get('/addresses',['middleware' => 'auth', function () {
     return \App\Address::all();
-});
+}]);
 
-$router->get('/address/{id}', function ($id) {
+$router->get('/address/{id}',['middleware' => 'auth', function ($id) {
     return \App\Address::where('addressId', $id)->get();
-});
+}]);
 
-$router->post('/address', function (\Illuminate\Http\Request $request) {
+$router->post('/address',['middleware' => 'auth', function (\Illuminate\Http\Request $request) {
 	$a_line1 = $request->json()->get('a_line1');
 	$a_line2 = $request->json()->get('a_line2');
 	$city    = $request->json()->get('city');
@@ -25,4 +25,4 @@ $router->post('/address', function (\Illuminate\Http\Request $request) {
 	$address->zip     = $zip;
 	$address->save();
 	return response()->json(array('success' => true, 'address' => $address), 200);
-});
+}]);

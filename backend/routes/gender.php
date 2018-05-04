@@ -2,14 +2,15 @@
 
 
 // gender endpoints
-$router->get('/gender/{id}', function($id) {
+$router->get('/gender/{id}',['middleware' => 'auth', function($id) {
 	return \App\Gender::where('genderTypeId', $id)->get();
-});
+}]);
 
-$router->get('/genders', function () {
+$router->get('/genders', ['middleware' => 'auth', function () {
     return \App\Gender::all();
-});
-$router -> post('/gender', function (\Illuminate\Http\Request $request){
+}]);
+
+$router -> post('/gender',['middleware' => 'auth', function (\Illuminate\Http\Request $request){
 	$genderTypeName = $request->json()->get('genderTypeName');
 	
 	$gender = new \App\Gender;
@@ -18,4 +19,4 @@ $router -> post('/gender', function (\Illuminate\Http\Request $request){
     $gender->save();
     return response()->json(array('success' => true, 'gender' => $gender), 200);
 
-});
+}]);

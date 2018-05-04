@@ -20,7 +20,8 @@ class User extends BaseModel
     'fname', 
     'lname', 
     'email',
-    'pwd',
+    'username',
+    'password',
     'dob', 
     'ssn', 
     'mobPhone', 
@@ -34,7 +35,8 @@ class User extends BaseModel
     'referId',
     'isVeteran',
     'addressId',
-    'caseManagerId' 
+    'caseManagerId',
+    'token' 
     ];
 
     /**

@@ -3,14 +3,14 @@
 
 
 // housing type endpoints
-$router->get('/housingtype/{id}', function($id) {
+$router->get('/housingtype/{id}',['middleware' => 'auth', function($id) {
 	return \App\HousingType::where('housingTypeId', $id)->get();
-});
+}]);
 
-$router->get('/housingtypes', function () {
+$router->get('/housingtypes',['middleware' => 'auth', function () {
     return \App\HousingType::all();
-});
-$router -> post('/housingtype', function (\Illuminate\Http\Request $request){
+}]);
+$router -> post('/housingtype',['middleware' => 'auth', function (\Illuminate\Http\Request $request){
 	$housingTypeName = $request->json()->get('housingTypeName');
 	
 	$housingtype = new \App\HousingType;
@@ -18,4 +18,4 @@ $router -> post('/housingtype', function (\Illuminate\Http\Request $request){
 	$housingtype->save();
     return response()->json(array('success' => true, 'housingtype' => $housingtype), 200);
 
-});
+}]);
