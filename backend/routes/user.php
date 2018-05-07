@@ -46,6 +46,7 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$specialNeeds= $request->json()->get('specialNeeds');
 	$cohabitants=$request->json()->get('cohabitants');
 	$medicalDiagnosises= $request->json()->get('medicalDiagnosises');
+	$uid = $request->json()->get('uid');
 	$userType = \App\UserType::where('userTypeId', $userTypeData['userTypeId'])->firstOrFail();
 
 	$genderTypeData = $request->json()->get('genderType');
@@ -67,9 +68,14 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$caseManagerId = \App\Casemanager::where('caseManagerId', $casemanagerIdData['caseManagerId'])->firstOrFail();
 	$addressIdData= $request->json()->get('address');
 	$address = \App\Address::where('addressId', $addressIdData['addressId'])->firstOrFail();
+    
+    if (empty($uid)) {
+    	$user = new \App\User;
+    } else {
+    	$user = \App\User::where('uid',$uid)->first();
+    }
 
-	$user = new \App\User;
-	$user->fname = $fName;
+    $user->fname = $fName;
 	$user->lname = $lName;
 	$user->email = $email;
 	$user->username = $username;
@@ -96,29 +102,43 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$user->userType()->associate($userType)->save();
 	$user->address()->associate($address)->save();
     if (!empty($foodPrepFacilities)){
+    	$foodprepIds = [];
     	foreach($foodPrepFacilities as $foodPrepFacility) {
     		$foodPrepId = $foodPrepFacility['prepId'];
-    		$user->foodPrepFacilities()->attach($foodPrepId);
+    		$foodprepIds[] = $foodPrepId;
+    		//$user->foodPrepFacilities()->attach($foodPrepId);
     	}
+    	$user->foodPrepFacilities()->sync($foodprepIds);
     }
 
     if(!empty($specialNeeds)){
+    	$specialNeedIds = [];
     	foreach($specialNeeds as $specialNeed){
     		$specialNeedId= $specialNeed['specialNeedId'];
-    		$user->specialNeeds()->attach($specialNeedId);
+    		$specialNeedIds[] = $specialNeedId;
+    		//$user->specialNeeds()->attach($specialNeedId);
     	}
+    	$user->specialNeeds()->sync($specialNeedIds);
     }
+
     if(!empty($cohabitants)){
+    	$cohabitantIds = [];
     	foreach($cohabitants as $cohabitant){
     		$cohabitantId=$cohabitant['cohabitantId'];
-    		$user->cohabitants()->attach($cohabitantId);
+    		$cohabitantIds[] = $cohabitantId;
+    		//$user->cohabitants()->attach($cohabitantId);
     	}
+    	$user->cohabitants()->sync($cohabitantIds);
     }
+
     if(!empty($medicalDiagnosises)){
+    	$medicalDiagnosisIds = [];
     	foreach($medicalDiagnosises as $medicalDiagnosis){
     		$diagnosisId= $medicalDiagnosis['diagnosisId'];
-    		$user->medicalDiagnosises()->attach($diagnosisId);
+    		$medicalDiagnosisIds[] = $diagnosisId;
+    		//$user->medicalDiagnosises()->attach($diagnosisId);
     	}
+    	$user->medicalDiagnosises()->sync($medicalDiagnosisIds);
     }
 
     return response()->json(array('success' => true, 'user' => $user), 200);
@@ -128,4 +148,13 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 $router->delete('/user/{id}',['middleware' => 'auth', function ($id){
 	$success= App\User::where('uid', $id)->delete();
 	return response()->json(array('success' => $success), 200);
+}]);
+
+$router -> post('/user/activate',['middleware' => 'auth', function (\Illuminate\Http\Request $request){
+	$uid = $request->json()->get('uid');
+	$active = $request->json()->get('active');
+	$user = \App\User::where('uid',$uid)->first();
+	$user->active = $active;
+	$user->save();
+	return response()->json(array('success' => true), 200);
 }]);
