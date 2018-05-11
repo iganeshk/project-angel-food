@@ -35,7 +35,7 @@ class User extends BaseModel
     'referId',
     'isVeteran',
     'addressId',
-    'caseManagerId',
+    'casemanagerId',
     'token' 
     ];
 
@@ -51,7 +51,7 @@ class User extends BaseModel
         return $this->belongsTo('\App\Refer', 'referId');
     }
      public function casemanager() {
-        return $this->belongsTo('\App\Casemanager', 'caseManagerId');
+        return $this->belongsTo('\App\Casemanager', 'casemanagerId');
     }
     public function sexualOrientationType() {
         return $this->belongsTo('\App\SexualOrientation', 'sexualOrientationTypeId');

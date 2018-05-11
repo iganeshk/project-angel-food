@@ -23,11 +23,11 @@ $router->get('/user',['middleware' => 'auth', function(\Illuminate\Http\Request 
     if (!empty($uid)) {
     	$where[] = ['uid', '=', $uid];
     }
-	return !empty($where) ? \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'caseManager', 'foodPrepFacilities','specialNeeds','cohabitants','medicalDiagnosises')->where($where)->get() : [];
+	return !empty($where) ? \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'casemanager', 'foodPrepFacilities','specialNeeds','cohabitants','medicalDiagnosises')->where($where)->get() : [];
 }]);
 
 $router->get('/users',['middleware' => 'auth', function () {
-    return \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'caseManager', 'foodPrepFacilities','specialNeeds', 'cohabitants','medicalDiagnosises')->get();
+    return \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'casemanager', 'foodPrepFacilities','specialNeeds', 'cohabitants','medicalDiagnosises')->get();
 }]);
 $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Request $request){
 	$fName = $request->json()->get('fname');
@@ -64,9 +64,10 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 
 	$sexualOrientationTypeData = $request->json()->get('sexualOrientationType');
 	$sexualOrientationTypeId = \App\SexualOrientation::where('sexualOrientationTypeId', $sexualOrientationTypeData['sexualOrientationTypeId'])->firstOrFail();
-	$casemanagerIdData = $request->json()->get('caseManager');
-	$caseManagerId = \App\Casemanager::where('caseManagerId', $casemanagerIdData['caseManagerId'])->firstOrFail();
+	$casemanagerIdData = $request->json()->get('casemanager');
+	$casemanagerId = \App\Casemanager::where('casemanagerId', $casemanagerIdData['casemanagerId'])->firstOrFail();
 	$addressIdData= $request->json()->get('address');
+
 	$address = \App\Address::where('addressId', $addressIdData['addressId'])->firstOrFail();
     
     if (empty($uid)) {
@@ -91,10 +92,11 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$user->housingTypeId = $housingTypeData['housingTypeId'];
 	$user->sexualOrientationTypeId = $sexualOrientationTypeData['sexualOrientationTypeId'];
 	$user->referId = $referIdData['referId'];
-	$user->caseManagerId = $casemanagerIdData['caseManagerId'];
+	$user->casemanagerId = $casemanagerIdData['casemanagerId'];
+	$user->addressId=$address;
 	$user->addressId= $addressIdData['addressId'];
 	$user->refer()->associate($referId)->save();
-	$user->casemanager()->associate($caseManagerId)->save();
+	$user->casemanager()->associate($casemanagerId)->save();
 	$user->housingType()->associate($housingTypeId)->save();
 	$user->raceType()->associate($raceTypeId)->save();
 	$user->sexualOrientationType()->associate($sexualOrientationTypeId)->save();
