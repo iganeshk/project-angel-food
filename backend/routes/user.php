@@ -40,6 +40,8 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$mobPhone = $request->json()->get('mobPhone');
 	$printLang = $request->json()->get('printLang');
 	$oralLang = $request->json()->get('oralLang');
+	$isVeteran= $request->json()->get('isVeteran');
+
 	$address = $request->json()->get('addressId');
 	$userTypeData = $request->json()->get('userType');
 	$foodPrepFacilities = $request->json()->get('foodPrepFacilities');
@@ -86,6 +88,8 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$user->mobPhone = $mobPhone;
 	$user->printLang = $printLang;
 	$user->oralLang = $oralLang;
+	$user->isVeteran=$isVeteran;
+
 	$user->userTypeId = $userTypeData['userTypeId'];
 	$user->genderTypeId = $genderTypeData['genderTypeId'];
 	$user->raceTypeId = $raceTypeData['raceTypeId'];
