@@ -10,7 +10,8 @@ $router -> post('/login', function (\Illuminate\Http\Request $request){
      	$token = sha1(time().$dbPassword);
      	$user->token = $token;
      	$user->save();
-     	return response()->json(array('success' => true, 'token' => $token), 200);
+          //$fname= \App\User::where ()
+     	return response()->json(array('success' => true, 'token' => $token,'fname'=>$user->fname), 200);
      } else {
      	return response()->json(array('success' => false), 405);
      }

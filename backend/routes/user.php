@@ -71,7 +71,7 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$addressIdData= $request->json()->get('address');
 
 	$address = \App\Address::where('addressId', $addressIdData['addressId'])->firstOrFail();
-    
+    //var_dump($uid);
     if (empty($uid)) {
     	$user = new \App\User;
     } else {
@@ -157,10 +157,15 @@ $router->delete('/user/{id}',['middleware' => 'auth', function ($id){
 }]);
 
 $router -> post('/user/activate',['middleware' => 'auth', function (\Illuminate\Http\Request $request){
-	$uid = $request->json()->get('uid');
+	$logged_in_user = $request->user();
+	if($logged_in_user->userTypeId==1){
+		$uid = $request->json()->get('uid');
 	$active = $request->json()->get('active');
 	$user = \App\User::where('uid',$uid)->first();
 	$user->active = $active;
 	$user->save();
 	return response()->json(array('success' => true), 200);
+	} 
+	return response()->json(array('success' => false), 405);
+	
 }]);
