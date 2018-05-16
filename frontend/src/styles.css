@@ -1,0 +1,225 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @import '~@angular/material/theming'; */
+
+/* @import '~@covalent/core/theming/all-theme'; */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  margin: 0px;
+  background-color: #f7f7f7;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2em;
+  margin: 20px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 1.7em;
+  margin: 20px;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: 1.43em;
+  margin: 20px;
+}
+
+th {
+  font-weight: 300;
+  font-size: 1.33em;
+  margin: 20px;
+}
+
+p {
+  font-weight: 200;
+  font-size: 1em;
+  margin: 20px;
+}
+
+.refresh-loader{
+  position: fixed;
+  left: 47%;
+  top: 38%;
+  z-index: 10000;
+  text-align:center;
+}
+
+.refresh-loader .heading{
+  font-size: 56px;
+  font-family: monospace;
+  text-shadow: 2px 2px 5px dimgrey;
+}
+
+.refresh-loader .loading-txt{
+  font-size: 20px;
+  color: #2b2b2b;
+}
+
+.icon {
+  color: gray;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+/* ***************************************************************************** */
+
+/* Custome CSS */
+
+/* TODO:high: following CSS is very bad... Please implement a proper structural CSS */
+
+/* ***************************************************************************** */
+
+.page-content {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  position: relative;
+  background-color: #ffffff;
+}
+
+.right-bottom-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 12px;
+  margin-bottom: 25px;
+}
+
+.message {
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  left: 50%;
+}
+
+.dg-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  padding: 0 30px;
+}
+
+.dg-search {
+  min-height: 65px;
+  margin-top: 10px;
+}
+
+.dg-action {
+  text-align: end;
+  visibility: hidden;
+}
+.mat-row{
+  transition: background-color 0.1s ease-in, transform 0.2s ease-out, border-bottom-color 0.5s ease-out;
+}
+
+.mat-row:hover{
+  background-color: #EEEEEF;
+  /* transform: scale(1); */
+  border-bottom-color: darkgray;
+}
+/* .dg-container .mat-row:hover .dg-action {
+  visibility: visible;
+  background-color: lightgray;
+} */
+
+.delete-icon {
+  color: #f44336;
+}
+
+/* CSS Included by Umair */
+
+.complaints {
+  margin-bottom: 25px;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+}
+
+.dgSearchBar {
+  margin: 20px 20px 0px 20px;
+}
+
+/* Use class options to hide any div */
+
+/* Use class hover-effect to display options div. Use it as parent of options */
+
+/* ***************************************************************************** */
+
+.options {
+  text-align: end;
+  visibility: hidden;
+  /* transition: visibility 0.5s ease-in; */
+}
+
+.hover-effect:hover .options {
+  visibility: visible;
+}
+
+/*******************************************************************************************/
+
+.permissions-footer {
+  margin: 20px 0 0 0 !important;
+}
+
+/* Mat Card Style */
+
+.mcard {
+  margin-bottom: 10px;
+}
+
+.mcard .mc-title {
+  font-size: 20px;
+}
+
+.mcard .mc-action-btn {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+}
+
+.mcard .mc-btn-rb {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+/* Dialog Pop-up */
+
+.dialog-title {
+  font-size: 20px;
+  padding-bottom:10px;
+}
+
+.progress-bar-margin {
+  margin-bottom: 10px;
+}
+
+.lower-to-capital {
+  text-transform: uppercase;
+}

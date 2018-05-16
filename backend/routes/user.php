@@ -6,7 +6,7 @@
 */
 
 $router->get('/user/{id}',['middleware' => 'auth', function($id){
-	return \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'caseManager', 'foodPrepFacilities','specialNeeds','cohabitants','medicalDiagnosises')->where('uid', $id)->get();
+	return \App\User::with('userType', 'genderType', 'raceType', 'housingType', 'refer', 'refer.referType', 'sexualOrientationType', 'address', 'casemanager', 'foodPrepFacilities','specialNeeds','cohabitants','medicalDiagnosises')->where('uid', $id)->get();
 }]);
 
 $router->get('/user',['middleware' => 'auth', function(\Illuminate\Http\Request $request){
@@ -82,7 +82,9 @@ $router -> post('/user',['middleware' => 'auth', function (\Illuminate\Http\Requ
 	$user->lname = $lName;
 	$user->email = $email;
 	$user->username = $username;
-	$user->password = sha1($password);
+    if($password != $user->password && sha1($password) != $user->password)    {
+        $user->password = sha1($password);
+    }
 	$user->dob = $dob;
 	$user->ssn = $ssn;
 	$user->mobPhone = $mobPhone;

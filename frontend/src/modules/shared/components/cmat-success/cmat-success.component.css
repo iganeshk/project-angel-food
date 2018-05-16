@@ -1,0 +1,10 @@
+.success{
+    display: flex;
+    margin:10px 0px 10px 0px;
+    color: rgb(55, 145, 55);
+  }
+  
+  .success .success-msg{
+    padding-left:8px;
+    padding-top:3px;
+  }

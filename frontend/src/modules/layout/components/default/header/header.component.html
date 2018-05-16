@@ -1,0 +1,23 @@
+<div class="header">
+    <mat-toolbar class="custom-toolbar">
+        <div class="brand-banner">
+            <div class="logo">
+                <img class="img-logo" style="width:120px;" src={{logo.path}} alt="{{appTitle}}">
+            </div>
+            <!-- <div class="title">
+                <h3 class="page_title">{{appTitle}}</h3>
+            </div> -->
+        </div>
+
+        <div class="user-navigation">
+            <button color="primary" id="user-name" mat-raised-button [matMenuTriggerFor]="menu">
+                <!-- <i class="material-icons vert_white">more_vert</i> -->
+                {{name}}
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+            <img class="profile-photo" src="assets/images/user.png">
+        </div>
+    </mat-toolbar>
+</div>

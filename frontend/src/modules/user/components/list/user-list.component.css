@@ -1,0 +1,13 @@
+.status-icon {
+    width: 21px;
+}
+
+.activestat {
+color: #388e3c;
+fill: #388e3c;
+}
+
+.disabledstat {
+color: #ef5350;
+fill: #ef5350;
+}

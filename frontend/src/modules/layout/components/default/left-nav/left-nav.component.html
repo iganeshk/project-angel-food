@@ -1,0 +1,11 @@
+<mat-nav-list>
+    <div class="left-nav">
+        <ng-template let-item let-last="last" ngFor [ngForOf]="links">
+            <a mat-list-item routerLink="{{item.link}}" routerLinkActive="active-left-nav">
+                <i class="material-icons">{{item.icon}} </i>
+                <span class="heading">{{item.text}} </span>
+            </a>
+            <mat-divider matInset *ngIf="!last"></mat-divider>
+        </ng-template>
+    </div>
+</mat-nav-list>

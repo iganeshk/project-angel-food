@@ -1,0 +1,75 @@
+<div>
+
+    <shared-page-loader *ngIf="!loaded"> </shared-page-loader>
+
+    <div *ngIf="loaded" [@pageState]="pageState">
+
+        <!-- Material Data Table -->
+        <div class="mat-elevation-z8">
+            <div>
+                <mat-form-field fxFlex class="dgSearchBar">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                </mat-form-field>
+            </div>
+            <div>
+
+                <mat-table #table [dataSource]="dataSource" *ngIf="loaded">
+
+                    <ng-container matColumnDef="fname">
+                        <mat-header-cell *matHeaderCellDef> {{attrLabels['fname']}} </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fname}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="lname">
+                        <mat-header-cell *matHeaderCellDef> {{attrLabels['lname']}} </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.lname}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="refer">
+                        <mat-header-cell *matHeaderCellDef> {{attrLabels['refer']}} </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.refer.referName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="casemanager">
+                        <mat-header-cell *matHeaderCellDef> {{attrLabels['casemanager']}} </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.casemanager.casemanagerName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="userType">
+                        <mat-header-cell *matHeaderCellDef> {{attrLabels['userType']}} </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.userType.userTypeName}} </mat-cell>
+                    </ng-container>                    
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> {{attrLabels['status']}} </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-icon class="activestat" *ngIf="element.active" matTooltip="Active">check_circle_outline</mat-icon>
+                            <mat-icon class="disabledstat" *ngIf="!element.active" matTooltip="iIactive">highlight_off</mat-icon>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="options">
+                        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="options">
+                            <a [routerLink]="['/users/view', element.uid]" mat-icon-button>
+                                <mat-icon matTooltip="View">visibility</mat-icon>
+                            </a>
+                            <a [routerLink]="['/users/update', element.uid]" mat-icon-button>
+                                <mat-icon matTooltip="Edit">edit</mat-icon>
+                            </a>
+                            <a mat-icon-button (click)="delete(element.uid)" matTooltip="Delete">
+                                <mat-icon color="warn">delete</mat-icon>
+                            </a>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row class="hover-effect" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+
+            <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+            </mat-paginator>
+        </div>
+
+    </div>
+    <div class="right-bottom-button">
+        <a mat-fab color="primary" [routerLink]="['/users/add']">
+            <mat-icon>add</mat-icon>
+        </a>
+    </div>
+</div>

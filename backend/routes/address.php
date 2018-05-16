@@ -11,8 +11,8 @@ $router->get('/address/{id}',['middleware' => 'auth', function ($id) {
 }]);
 
 $router->post('/address',['middleware' => 'auth', function (\Illuminate\Http\Request $request) {
-	$a_line1 = $request->json()->get('a_line1');
-	$a_line2 = $request->json()->get('a_line2');
+	$a_line1 = $request->json()->get('addrLine1');
+	$a_line2 = $request->json()->get('addrLine2');
 	$city    = $request->json()->get('city');
 	$state   = $request->json()->get('state');
 	$zip     = $request->json()->get('zip');

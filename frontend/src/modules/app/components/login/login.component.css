@@ -1,0 +1,42 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 15vh;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.submit-button {
+  padding: 0;
+  background-color: #36b0e9;
+  margin-top: 0px;
+}
+
+.divider {
+  border-bottom: 4px solid #36b0e9;
+  width: 25%;
+  margin-top: 2%;
+  margin-bottom: 8%;
+}
+
+.forgetPassword {
+  margin-top: 15px;
+  text-align: right;
+}
+
+.forgetPassword a {
+  text-decoration: none;
+  color: gray;
+}
+
+.forgetPassword a:hover {
+  text-decoration: underline;
+  color: black;
+}
+.passpassword {
+  margin-top: -35px;
+}
+

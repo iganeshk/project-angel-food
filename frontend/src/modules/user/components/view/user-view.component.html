@@ -1,0 +1,128 @@
+<div>
+
+    <shared-page-loader *ngIf="!loaded"> </shared-page-loader>
+
+    <div *ngIf="loaded" [@pageState]="pageState">
+        <mat-card class="mcard">
+            <div>
+                <mat-card-title class="mc-title"></mat-card-title>
+                <!-- <div class="mc-action-btn">
+                    <a [routerLink]="['/security/users/update', user.id]" mat-icon-button *ifPermitted="'users.update'">
+                        <mat-icon matTooltip="Edit">edit</mat-icon>
+                    </a>
+                    <a mat-icon-button (click)="delete(user.id)" matTooltip="delete" *ifPermitted="'users.delete'">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </div> -->
+            </div>
+            <mat-card-content>
+                <div class="user-content" fxLayout="column" fxLayoutGap="20px">
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.fname}}:</strong>
+                        </div>
+                        <div>{{user.fname}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.lname}}:</strong>
+                        </div>
+                        <div>{{user.lname}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.email}}:</strong>
+                        </div>
+                        <div>{{user.email}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.dob}}:</strong>
+                        </div>
+                        <div>{{user.dob}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.ssn}}:</strong>
+                        </div>
+                        <div>{{user.ssn}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.mobPhone}}:</strong>
+                        </div>
+                        <div>{{user.mobPhone}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.printLang}}:</strong>
+                        </div>
+                        <div>{{user.printLang}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.oralLang}}:</strong>
+                        </div>
+                        <div>{{user.oralLang}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.gender}}:</strong>
+                        </div>
+                        <div>{{user.genderType.genderTypeName}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.refer}}:</strong>
+                        </div>
+                        <div>{{user.refer.referName}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.address}}:</strong>
+                        </div>
+                        <div>{{user.address.addrLine1}} {{user.address.addrLine2}}, {{user.address.city}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.housingType}}:</strong>
+                        </div>
+                        <div>{{user.housingType.housingTypeName}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.casemanager}}:</strong>
+                        </div>
+                        <div>{{user.casemanager.casemanagerName}}</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.foodPrepInfo}}:</strong>
+                        </div>
+                        <div *ngFor="let foodPrepFacility of user.foodPrepFacilities; let last = last">
+                            <span>{{foodPrepFacility.prepName}}
+                                <span *ngIf="!last">,</span>
+                            </span>
+                        </div>
+                        <div *ngIf="user.foodPrepFacilities.length < 1">None</div>
+                    </div>
+                    <div fxLayout>
+                        <div fxFlex="30">
+                            <strong>{{userLabels.coHabitants}}:</strong>
+                        </div>
+                        <div *ngFor="let cohabitant of user.cohabitants; let last = last">
+                            <span>{{cohabitant.cohabitantFirstName}} {{cohabitant.cohabitantLastName}}
+                                <span *ngIf="!last">,</span>
+                            </span>
+                        </div>
+                        <div *ngIf="user.cohabitants.length < 1">None</div>
+                    </div>
+                    <div>
+                        <a mat-raised-button [routerLink]="['/users']">Back</a>
+                        <a mat-raised-button color="primary" [routerLink]="['/users/update', user.uid]">Edit</a>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

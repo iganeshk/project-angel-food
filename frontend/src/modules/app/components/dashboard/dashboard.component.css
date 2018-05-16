@@ -1,0 +1,9 @@
+.widget{
+  margin: 0px 10px 10px 0px;
+}
+
+agm-map {
+  height: 300px;
+}
+
+.gm-style div{color: #fff !important; font-weight: bold;}

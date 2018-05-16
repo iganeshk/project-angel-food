@@ -1,0 +1,9 @@
+.error{
+    display: flex;
+    margin:10px 0px 10px 0px;
+  }
+  
+  .error .error-msg{
+    padding-left:8px;
+    padding-top:3px;
+  }

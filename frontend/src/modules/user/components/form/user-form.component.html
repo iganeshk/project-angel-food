@@ -1,0 +1,324 @@
+<div>
+
+    <mat-card *ngIf="loaded" [@pageState]="pageState">
+
+        <mat-card-content *ngIf="loaded">
+            <form novalidate [formGroup]="fg" (ngSubmit)="saveData(fg.value)">
+                <mat-card-title class="mc-title"></mat-card-title>
+                <div class="user-section">
+                    <div *ngIf="!nextPage">
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.fname" formControlName="fname" required>
+                                <mat-error *ngIf="fg.get('fname').hasError('required')">First Name is required</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.lname" formControlName="lname" required>
+                                <mat-error *ngIf="fg.get('lname').hasError('required')">Last Name is required</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.username" formControlName="username" required>
+                                <mat-error *ngIf="fg.get('username').hasError('required')">Username is required</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.email" formControlName="email" required>
+                                <mat-error *ngIf="fg.get('email').hasError('required')">Email is required</mat-error>
+                                <mat-error *ngIf="fg.get('email').hasError('email') && !fg.get('email').hasError('required')">Invalid email address</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50">
+                                <input type="password" matInput [placeholder]="userLabels.password" formControlName="password" required>
+                                <mat-error *ngIf="fg.get('password').hasError('required')">Password is required</mat-error>
+
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50" *ngIf="pageAct == 'add'">
+                                <input type="password" matInput [placeholder]="userLabels.confirmPassword" formControlName="confirmPassword" required>
+                                <mat-error *ngIf="fg.get('confirmPassword').hasError('required')">Confirm Password is required</mat-error>
+                                <mat-error *ngIf="fg.get('confirmPassword').hasError('equalTo') && !fg.get('confirmPassword').hasError('required') ">Password did not match</mat-error>
+
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.mobPhone" formControlName="mobPhone" [textMask]="{mask: phoneNumberMask}" required>
+                                <mat-error *ngIf="fg.get('mobPhone').hasError('required')">Phone Number is required</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.ssn" formControlName="ssn" [textMask]="{mask: phoneNumberMask}" required>
+                                <mat-error *ngIf="fg.get('ssn').hasError('required')">SSN is required</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <div fxFlex="50" fxLayout fxLayoutAlign="start center">
+
+                                <div formGroupName="genderType">
+                                    <mat-form-field fxFlex="50">
+                                        <mat-select [placeholder]="userLabels.gender" formControlName="genderTypeId" required>
+                                            <mat-option *ngFor="let gender of genderList" [value]="gender.genderTypeId">{{gender.genderTypeName}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [matDatepicker]="picker" [placeholder]="userLabels.dob" formControlName="dob" required>
+                                <mat-error *ngIf="fg.get('email').hasError('required')">Email is required</mat-error>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="fg.get('dob').hasError('required')">Date Of Birth is required</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.printLang" formControlName="printLang" required>
+                                <mat-error *ngIf="fg.get('printLang').hasError('required')">Print Language is required</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50">
+                                <input matInput [placeholder]="userLabels.oralLang" formControlName="oralLang" required>
+                                <mat-error *ngIf="fg.get('oralLang').hasError('required')">Oral Language is required</mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50" formGroupName="sexualOrientationType">
+                                <mat-select [placeholder]="userLabels.sexualOrientation" formControlName="sexualOrientationTypeId" required>
+                                    <mat-option *ngFor="let sexualOrientation of sexualOrientationList" [value]="sexualOrientation.sexualOrientationTypeId">
+                                        {{sexualOrientation.sexualOrientationTypeName}}
+                                    </mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fg.get('sexualOrientationTypeId').hasError('required')">Sexual Orientation is required</mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50" formGroupName="raceType">
+                                <mat-select [placeholder]="userLabels.race" formControlName="raceTypeId" required>
+                                    <mat-option *ngFor="let race of raceList" [value]="race.raceTypeId">{{race.raceTypeName}}</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fg.get('raceTypeId').hasError('required')">Race is required</mat-error> -->
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50" formGroupName="userType">
+                                <mat-select [placeholder]="userLabels.userType" formControlName="userTypeId" required >
+                                    <mat-option *ngFor="let userType of userTypeList" [value]="userType.userTypeId">{{userType.userTypeName}}</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fg.get('userTypeId').hasError('required')">User Type is required</mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="50" formGroupName="casemanager">
+                                <mat-select [placeholder]="userLabels.casemanager" formControlName="casemanagerId" required>
+                                    <mat-option *ngFor="let casemanager of caseManagerList" [value]="casemanager.casemanagerId">{{casemanager.casemanagerName}}</mat-option>
+
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fg.get('casemanagerId').hasError('required')">Case Manager is required</mat-error> -->
+                            </mat-form-field>
+
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <div>
+                                <mat-checkbox fxFlex="50" formControlName="isVeteran">
+                                    {{userLabels.isVeteran}}
+                                </mat-checkbox>
+                            </div>
+                            <div *ngIf="isAdmin">
+                                <mat-checkbox fxFlex="50" formControlName="active">
+                                    Active
+                                </mat-checkbox>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div *ngIf="nextPage">
+                        <div fxLayout="column" fxLayoutGap="20px" class="user-section">
+                            <fieldset>
+                                <legend>{{userLabels.address}}:</legend>
+                                <div formGroupName="address">
+
+                                    <div fxLayout="row" fxLayoutGap="10px">
+
+                                        <mat-form-field fxFlex="50">
+                                            <input matInput [placeholder]="userLabels.addrLine1" formControlName="addrLine1" required>
+                                            <!-- <mat-error *ngIf="fg.get('addrLine1').hasError('required')">Address Line 1 is required</mat-error> -->
+                                        </mat-form-field>
+
+                                        <mat-form-field fxFlex="50">
+                                            <input matInput [placeholder]="userLabels.addrLine2" formControlName="addrLine2">
+                                        </mat-form-field>
+
+                                    </div>
+                                    <div fxLayout="row" fxLayoutGap="10px">
+
+                                        <mat-form-field fxFlex="50">
+                                            <input matInput [placeholder]="userLabels.city" formControlName="city" required>
+                                            <!-- <mat-error *ngIf="fg.get('city').hasError('required')">City is required</mat-error> -->
+                                        </mat-form-field>
+
+                                        <mat-form-field fxFlex="50">
+                                            <input matInput [placeholder]="userLabels.state" formControlName="state" required>
+                                            <!-- <mat-error *ngIf="fg.get('state').hasError('required')">State is required</mat-error> -->
+                                        </mat-form-field>
+
+                                    </div>
+                                    <div fxLayout="row" fxLayoutGap="10px">
+
+                                        <mat-form-field fxFlex="50">
+                                            <input type="number" matInput [placeholder]="userLabels.zip" formControlName="zip" required>
+                                            <!-- <mat-error *ngIf="fg.get('zip').hasError('required')">Zip is required</mat-error> -->
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <fieldset>
+                                <legend>{{userLabels.coHabitants}}:</legend>
+                                <div formArrayName="cohabitants" *ngFor="let item of fg.get('cohabitants').controls; let i = index;">
+                                    <div [formGroupName]="i">
+
+                                        <div fxLayout="row" fxLayoutGap="10px">
+
+                                            <mat-form-field fxFlex="50">
+                                                <input matInput [placeholder]="userLabels.cohabitantFirstName" formControlName="cohabitantFirstName" required>
+                                                <!-- <mat-error *ngIf="fg.get('cohabitantFirstName').hasError('required')">Cohabitant First Name is required</mat-error> -->
+                                            </mat-form-field>
+
+                                            <mat-form-field fxFlex="50">
+                                                <input matInput [placeholder]="userLabels.cohabitantLastName" formControlName="cohabitantLastName" required>
+                                                <!-- <mat-error *ngIf="fg.get('cohabitantLastName').hasError('required')">Cohabitant Last Name is required</mat-error> -->
+                                            </mat-form-field>
+
+                                        </div>
+                                        <div fxLayout="row" fxLayoutGap="10px">
+
+                                            <mat-form-field fxFlex="50">
+                                                <input type="number" matInput [placeholder]="userLabels.cohabitantAge" formControlName="cohabitantAge" required>
+                                                <!-- <mat-error *ngIf="fg.get('cohabitantAge').hasError('required')">Cohabitant Age is required</mat-error> -->
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex="50">
+                                                <input matInput [placeholder]="userLabels.relationship" formControlName="relationship" required>
+                                                <!-- <mat-error *ngIf="fg.get('relationship').hasError('required')">Relationship is required</mat-error> -->
+                                            </mat-form-field>
+
+                                        </div>
+                                        <div fxLayout="row" fxLayoutGap="10px">
+                                            <div fxFlex="50" fxLayout fxLayoutAlign="start center">
+                                                <div fxFlex="20">
+                                                    {{userLabels.isCaretaker}}:
+                                                </div>
+                                                <mat-radio-group formControlName="isCaretaker">
+                                                    <mat-radio-button [value]="careTaker">Yes</mat-radio-button>
+                                                    <mat-radio-button [value]="notCareTaker">No</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>{{userLabels.refer}}:</legend>
+                                <div formGroupName="refer">
+
+                                    <div fxLayout="row" fxLayoutGap="10px">
+
+                                        <mat-form-field fxFlex="50">
+                                            <input matInput [placeholder]="userLabels.referName" formControlName="referName" required>
+                                            <!-- <mat-error *ngIf="fg.get('referName').hasError('required')">Refer Name is required</mat-error> -->
+                                        </mat-form-field>
+
+                                        <mat-form-field fxFlex="50">
+                                            <input matInput [placeholder]="userLabels.referPhone" formControlName="referPhone" [textMask]="{mask: phoneNumberMask}" required>
+                                            <!-- <mat-error *ngIf="fg.get('referPhone').hasError('required')">Refer Phone is required</mat-error> -->
+                                        </mat-form-field>
+
+                                    </div>
+                                    <div fxLayout="row" fxLayoutGap="10px" formGroupName="referType">
+                                        <mat-form-field fxFlex="50">
+                                            <mat-select [placeholder]="userLabels.referType" formControlName="referTypeId" required>
+                                                <mat-option *ngFor="let referType of referTypeList" [value]="referType.referTypeId">{{referType.referTypeName}}</mat-option>
+                                            </mat-select>
+                                            <!-- <mat-error *ngIf="fg.get('referTypeId').hasError('required')">Refer Type is required</mat-error> -->
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <mat-form-field fxFlex="50" formGroupName="housingType">
+                                <mat-select [placeholder]="userLabels.housingType" formControlName="housingTypeId" required>
+                                    <mat-option *ngFor="let housingType of housingTypeList" [value]="housingType.housingTypeId">{{housingType.housingTypeName}}</mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="fg.get('housingTypeId').hasError('required')">Housing Type is required</mat-error> -->
+                            </mat-form-field>
+
+                            <div fxFlex="50" formArrayName="medicalDiagnosises" *ngFor="let item of fg.get('medicalDiagnosises').controls; let i = index;">
+                                <div [formGroupName]="i">
+                                    <mat-form-field fxFlex="100">
+                                        <input matInput [placeholder]="userLabels.diagnosisName" formControlName="diagnosisName" required>
+                                        <!-- <mat-error *ngIf="fg.get('diagnosisName').hasError('required')">{{userLabels.diagnosisName}} is required</mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxFlex="50" formArrayName="specialNeeds" *ngFor="let item of fg.get('specialNeeds').controls; let i = index;">
+                                <div [formGroupName]="i">
+                                    <mat-form-field fxFlex="100">
+                                        <input matInput [placeholder]="userLabels.specialNeedName" formControlName="specialNeedName" required>
+                                        <!-- <mat-error *ngIf="fg.get('specialNeedName').hasError('required')">{{userLabels.specialNeedName}} is required</mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div fxFlex="50" formArrayName="foodPrepFacilities" *ngFor="let item of fg.get('foodPrepFacilities').controls; let i = index;">
+                                <div [formGroupName]="i">
+                                    <mat-form-field fxFlex="100">
+                                        <input matInput [placeholder]="userLabels.prepName" formControlName="prepName" required>
+                                        <!-- <mat-error *ngIf="fg.get('prepName').hasError('required')">{{userLabels.prepName}} is required</mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button mat-raised-button *ngIf="!nextPage" type="button" (click)="toggleNext(true)" color="primary">Next</button>
+                    <button mat-raised-button *ngIf="nextPage" type="submit" [disabled]=" fg.invalid" color="primary">Save</button>
+                    <a mat-raised-button *ngIf="!nextPage" [routerLink]="['/users']">Back</a>
+                    <a mat-raised-button *ngIf="nextPage" (click)="toggleNext(false)">Back</a>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+</div>

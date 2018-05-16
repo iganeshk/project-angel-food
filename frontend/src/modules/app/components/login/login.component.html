@@ -1,0 +1,28 @@
+<div class="main-content">
+  <mat-card>
+    <mat-card-actions class="primary" style="text-align:center">
+      <img src="assets/images/logo.png" width="250px" />
+      <!-- <div style="width: 200px;margin:0 auto;" class="divider"></div> -->
+    </mat-card-actions>    
+<!--     <mat-card-title>
+      Login
+      <div class="divider"></div>
+    </mat-card-title> -->
+    <mat-card-content>
+      <form #loginForm="ngForm" [formGroup]="fg" (ngSubmit)="login(loginForm.value)" class="login-form">
+        <mat-form-field floatLabel="never" shouldLabelFloat="false">
+          <input matInput class="input" [placeholder]="attributesLabels.username" formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field class="password" floatLabel="never">
+          <input matInput class="input" [placeholder]="attributesLabels.password" type="password" formControlName="password" required
+            ngModel>
+        </mat-form-field>
+        <shared-cmat-error *ngIf="loginError" [errorMsg]="authError.message"></shared-cmat-error>
+        <div style="text-align:right;">
+          <button style="width: 30%;margin-top: 5%;" mat-raised-button class="submit-button" color="accent" [disabled]="!loginForm.form.valid" type="submit">Login</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
