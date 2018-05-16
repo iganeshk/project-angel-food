@@ -36,21 +36,21 @@ Make sure you've edited `./src/environments/environment.ts` and `./src/environme
 
 ## Screenshots
 
-![angel-food-demo-dashboard](/screenshots/angel-food-demo-dashboard.PNG?raw=true "Dashboard")
+![angel-food-demo-dashboard](/frontend/screenshots/angel-food-demo-dashboard.PNG?raw=true "Dashboard")
 
-![angel-food-demo-login](/screenshots/angel-food-demo-login.PNG?raw=true "Login")
+![angel-food-demo-login](/frontend/screenshots/angel-food-demo-login.PNG?raw=true "Login")
 
-![angel-food-demo-user-list](/screenshots/angel-food-demo-user-list.PNG?raw=true "User - List")
+![angel-food-demo-user-list](/frontend/screenshots/angel-food-demo-user-list.PNG?raw=true "User - List")
 
-![angel-food-demo-user-view](/screenshots/angel-food-demo-user-view.PNG?raw=true "User - View")
+![angel-food-demo-user-view](/frontend/screenshots/angel-food-demo-user-view.PNG?raw=true "User - View")
 
-![angel-food-demo-user-add](/screenshots/angel-food-demo-user-add.PNG?raw=true "User - Add")
+![angel-food-demo-user-add](/frontend/screenshots/angel-food-demo-user-add.PNG?raw=true "User - Add")
 
-![angel-food-demo-user-add-2](/screenshots/angel-food-demo-user-add-2.PNG?raw=true "User - Add (2)")
+![angel-food-demo-user-add-2](/frontend/screenshots/angel-food-demo-user-add-2.PNG?raw=true "User - Add (2)")
 
-![angel-food-demo-user-edit-usertype-user](/screenshots/angel-food-demo-user-edit-usertype-user.PNG?raw=true "User - Edit")
+![angel-food-demo-user-edit-usertype-user](/frontend/screenshots/angel-food-demo-user-edit-usertype-user.PNG?raw=true "User - Edit")
 
-![angel-food-demo-login-disabled](/screenshots/angel-food-demo-login-disabled.PNG?raw=true "User - Login (Disabled)")
+![angel-food-demo-login-disabled](/frontend/screenshots/angel-food-demo-login-disabled.PNG?raw=true "User - Login (Disabled)")
 
 ## Directory Structure
 ```
