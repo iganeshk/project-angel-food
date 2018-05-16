@@ -34,6 +34,17 @@ Make sure you've edited `./src/environments/environment.ts` and `./src/environme
 * `ng build --prod --base-href http://website-address` (production)
 
 
+## Screenshots
+
+![angel-food-demo-dashboard]()
+![angel-food-demo-login]()
+![angel-food-demo-user-list]()
+![angel-food-demo-user-view]()
+![angel-food-demo-user-add]()
+![angel-food-demo-user-add-2]()
+![angel-food-demo-user-edit-usertype-user]()
+![angel-food-demo-login-disabled]()
+
 ## Directory Structure
 ```
 App
