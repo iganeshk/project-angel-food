@@ -36,9 +36,9 @@ Make sure you've edited `./src/environments/environment.ts` and `./src/environme
 
 ## Screenshots
 
-![angel-food-demo-dashboard](/frontend/screenshots/angel-food-demo-dashboard.PNG?raw=true "Dashboard")
-
 ![angel-food-demo-login](/frontend/screenshots/angel-food-demo-login.PNG?raw=true "Login")
+
+![angel-food-demo-dashboard](/frontend/screenshots/angel-food-demo-dashboard.PNG?raw=true "Dashboard")
 
 ![angel-food-demo-user-list](/frontend/screenshots/angel-food-demo-user-list.PNG?raw=true "User - List")
 
