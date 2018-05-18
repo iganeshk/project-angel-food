@@ -51,7 +51,7 @@ lower_case_table_names = 1
 ## Running / Development
 
 * `php -S localhost:8000 -t public`
-* Visit the API at [http://localhost:4200](http://localhost:8000)
+* Visit the API at [http://localhost:8000](http://localhost:8000)
 
 
 ## Screenshots
