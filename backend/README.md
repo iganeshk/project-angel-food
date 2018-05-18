@@ -56,9 +56,9 @@ lower_case_table_names = 1
 
 ## Screenshots
 
-![angel-food-demo-api-load](/backend/screenshots/api_run.PNG?raw=true "Backend Loaded")
+![angel-food-demo-api-load](/backend/screenshots/api_run.png?raw=true "Backend Loaded")
 
-![angel-food-demo-api-login](/backend/screenshots/example_login.PNG?raw=true "Example login")
+![angel-food-demo-api-login](/backend/screenshots/example_login.png?raw=true "Example login")
 
 ## Directory Structure
 ```
