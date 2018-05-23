@@ -1,7 +1,6 @@
 revisions/
 frontend/.angulardoc.json
 frontend/node_modules/
-frontend/documentation/
 backend/vendor/
 # Byte-compiled / optimized / DLL files
 __pycache__/
