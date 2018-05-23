@@ -54,9 +54,12 @@ export class LoginComponent implements OnInit {
         console.log(' login error: ', error);
         this.loginError = true;
         this.authError['status'] = true;
+        // Get message attribute from response Json
         if(error.message == "account disabled")  {
+          // Login successful but account disabled
           this.authError['message'] = 'Account disabled, contact Administrator';
         } else {
+          // Invalid login credentials
           this.authError['message'] = 'Invalid username or password';
         }
       }

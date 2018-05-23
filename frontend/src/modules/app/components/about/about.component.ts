@@ -3,6 +3,10 @@ import { Router } from '@angular/router/src/router';
 
 import { LayoutService } from '../../../layout/services';
 
+/**
+ * About Us Page Component
+ **/
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',

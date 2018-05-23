@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+/**
+ * Left Navigation Layout
+ **/
+
 @Component({
   selector: 'layout-left-nav',
   templateUrl: './left-nav.component.html',

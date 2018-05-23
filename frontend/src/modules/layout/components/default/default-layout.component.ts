@@ -1,7 +1,9 @@
 import { Subscription } from 'rxjs/Subscription';
 import { LayoutService } from 'modules/layout/services';
 import { Component, OnDestroy } from '@angular/core';
-
+/**
+ * Default Page Layout
+ **/
 @Component({
   selector: 'layout-default',
   templateUrl: './default-layout.component.html',

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-
 import { PageAnimation } from 'modules/shared/helper';
 import { UserModel } from 'modules/user/models';
-
 import { UserService } from 'modules/user/services';
 import { LayoutService } from 'modules/layout/services';
 import { ConfirmDialogComponent } from 'modules/shared/components';
+
+/**
+ * View User Component
+ **/
 
 @Component({
   selector: 'user-view',

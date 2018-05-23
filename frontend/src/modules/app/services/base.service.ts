@@ -20,6 +20,9 @@ export class BaseService {
     return new RequestOptions({ headers: headers })
   }
 
+  /**
+   * Append Token to request body
+   **/
   private setRequestOptions(params){
     let requestOptions = this.setHeaders();
 
@@ -30,6 +33,9 @@ export class BaseService {
     return requestOptions;
   }
 
+  /**
+   * GET method with HTTP request
+   **/
   protected __get(url, params?) {
     
     let reqOptions = this.setRequestOptions(params); 
@@ -40,6 +46,9 @@ export class BaseService {
     );
   }
 
+  /**
+   * PUT method with HTTP request body
+   **/
   __put(url, putBody) {
 
     return this.http.put(
@@ -48,7 +57,9 @@ export class BaseService {
       this.setHeaders()
     );
   }
-
+  /**
+   * POST method with HTTP request body 
+   **/
   __post(url, postBody) {
     postBody['token'] = localStorage.getItem('token');
 
@@ -58,7 +69,9 @@ export class BaseService {
       postBody
     );
   }
-
+  /**
+   * DELETE method with HTTP request body
+   **/
   __delete(url) {
     
     let reqOptions = this.setRequestOptions(null);
