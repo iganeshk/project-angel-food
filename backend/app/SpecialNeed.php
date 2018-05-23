@@ -3,7 +3,8 @@
 namespace App;
 
 use App\BaseModel;
-
+/*Model is a representation of a database table. 
+Interacts with DB */
 class SpecialNeed extends BaseModel
 {
 
@@ -16,9 +17,11 @@ class SpecialNeed extends BaseModel
      *
      * @var array
      */
+    //Table fields: 
     protected $fillable = [
         'specialNeedId', 'specialNeedName'
     ];
+    //Relationship of USer and his SpecialNeeds:
     public function users() {
         return $this->belongsToMany('\App\User', 'site_user_special_need_map', 'specialNeedId', 'uid');
     }

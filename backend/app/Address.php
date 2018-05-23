@@ -3,7 +3,8 @@
 namespace App;
 
 use App\BaseModel;
-
+/*Model is a representation of a database table. 
+Interacts with DB */
 class Address extends BaseModel
 {
 
@@ -15,9 +16,12 @@ class Address extends BaseModel
      *
      * @var array
      */
+
+    // Table fields are here :
     protected $fillable = [
         'addressId', 'addrLine1','addrLine2', 'CITY', 'STATE','ZIP'
     ];
+    //Relationship of USer and his Address
     public function user() {
         return $this->hasOne('\App\User', 'addressId');
     }

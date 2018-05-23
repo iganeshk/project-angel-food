@@ -3,7 +3,8 @@
 namespace App;
 
 use App\BaseModel;
-
+/*Model is a representation of a database table. 
+Interacts with DB */
 class User extends BaseModel
 {
 
@@ -44,6 +45,7 @@ class User extends BaseModel
      *
      * @var array
      */
+    //Relationship of User and his Fields:
     public function userType() {
         return $this->belongsTo('\App\UserType', 'userTypeId');
     }

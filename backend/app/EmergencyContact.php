@@ -3,7 +3,8 @@
 namespace App;
 
 use App\BaseModel;
-
+/*Model is a representation of a database table. 
+Interacts with DB */
 class EmergencyContact extends BaseModel
 {
     protected $table = 'emergency_contact';
@@ -13,9 +14,11 @@ class EmergencyContact extends BaseModel
      *
      * @var array
      */
+    // Table fields are here :
     protected $fillable = [
         'contactId', 'contactName','phone','relation'  
         ];
+    //Relationship of USer and his EmergencyContact
     public function user() {
         return $this->hasOne('\App\User', 'contactId');
     }
