@@ -16,6 +16,7 @@ class ReferType extends BaseModel
      *
      * @var array
      */
+    //Table fields:
     protected $fillable = [
         'referTypeName'
     ];
@@ -25,6 +26,7 @@ class ReferType extends BaseModel
      *
      * @var array
      */
+    //Relationship of USer and his Refertype:
     public function refer() {
         return $this->hasMany('\App\Refer', 'referTypeId');
     }

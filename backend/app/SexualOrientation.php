@@ -3,7 +3,8 @@
 namespace App;
 
 use App\BaseModel;
-
+/*Model is a representation of a database table. 
+Interacts with DB */
 class SexualOrientation extends BaseModel
 {
 
@@ -15,9 +16,11 @@ class SexualOrientation extends BaseModel
      *
      * @var array
      */
+    //Table fields:
     protected $fillable = [
         'sexualOrientationTypeId', 'sexualOrientationTypeName'
     ];
+    //Relationship of USer and his SexualOrientation:
     public function user() {
         return $this->hasMany('\App\User', 'sexualOrientationTypeId');
     }

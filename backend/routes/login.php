@@ -1,4 +1,6 @@
 <?php
+/* Login checks the user password using sha1 mechanism 
+generates and returns a token for the use's session which will be used for users further requests -> Auth( -> Providers -> AuthServiceProvider.php)*/
 
 $router -> post('/login', function (\Illuminate\Http\Request $request){
      $username = $request->json()->get('username');

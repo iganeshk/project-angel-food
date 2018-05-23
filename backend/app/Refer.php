@@ -3,7 +3,8 @@
 namespace App;
 
 use App\BaseModel;
-
+/*Model is a representation of a database table. 
+Interacts with DB */
 class Refer extends BaseModel
 {
 
@@ -16,10 +17,11 @@ class Refer extends BaseModel
      *
      * @var array
      */
+    //Table fields:
     protected $fillable = [
         'referId', 'referPhone', 'referName','referTypeId'
     ];
-
+    //Relationship of USer and his Refer type:
     public function referType() {
         return $this->belongsTo('\App\ReferType', 'referTypeId');
     }
