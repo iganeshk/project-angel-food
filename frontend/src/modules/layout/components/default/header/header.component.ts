@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { LayoutService } from 'modules/layout/services';
-
 import { Subscription } from 'rxjs/Subscription';
+
+/**
+ * Default Page Header Layout
+ **/
 
 @Component({
   selector: 'layout-header',

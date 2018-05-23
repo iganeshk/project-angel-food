@@ -18,12 +18,18 @@ export class UserService extends BaseService {
       return data.json();
     });
   }
-
+/**
+ * Retrieve User by ID
+ **/
   find(id: number) {
     return this.__get(`${this.routeURL}/${id}`).map(data => {
       return data.json();
     });
   }
+
+/**
+ * POST Methods
+ **/
 
   create(user: UserModel) {
     return this.__post(`${this.routeURL}`, user).map(data => {
@@ -65,11 +71,19 @@ export class UserService extends BaseService {
     }).catch(this.handleError);
   }
 
+  /**
+   * UPDATE
+   **/  
+
   update(id: Number, user: UserModel) {
     return this.__put(`${this.routeURL}/update/${id}`, user).map(data => {
       return data.json();
     }).catch(this.handleError);
   }
+
+  /**
+   * DELETE
+   **/
 
   delete(id: Number) {
     return this.__delete(`${this.routeURL}/${id}`).map(data => {
@@ -77,6 +91,10 @@ export class UserService extends BaseService {
     });
   }
 
+  /**
+   * Getters
+   **/
+  
   getAllCaseManagers() {
     return this.__get(`casemanagers`).map(data => {
       return data.json();

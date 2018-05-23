@@ -1,5 +1,7 @@
 import { FormControl, Validators, ValidatorFn, FormGroup, AbstractControl, FormArray } from '@angular/forms';
-
+/**
+ * User Model
+ **/
 export class UserModel {
   static attributesLabels = {
     fname: 'First Name',

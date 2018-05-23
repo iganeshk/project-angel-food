@@ -8,7 +8,7 @@ import {
 } from './components';
 
 /**
- * Available routing paths
+ * Available routing paths for /user
  */
 const routes: Routes = [
   {

@@ -1,3 +1,6 @@
+/**
+ * Global Element Configuration
+ **/
 export const GLOBALS = {
   deleteDialog: {
     width: '350px',

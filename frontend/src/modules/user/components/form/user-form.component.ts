@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
 import { PageAnimation } from 'modules/shared/helper';
 import {
   UserModel, CaseManagerModel, GenderModel, HousingTypeModel, RaceModel,
@@ -10,6 +9,10 @@ import {
 import { UserService } from 'modules/user/services';
 import { LayoutService } from 'modules/layout/services';
 import { GLOBALS } from 'modules/app/config/globals';
+
+/**
+ * Add/Update User form Component
+ **/
 
 @Component({
   selector: 'user-form',
@@ -23,7 +26,6 @@ export class UserFormComponent implements OnInit {
 
   public loaded: boolean = false;
   public boxLoaded: boolean = true;
-  // public nextPage: boolean = true;
   public nextPage: boolean = false;
   public fg: FormGroup;
   public pageAct: string;
@@ -94,6 +96,7 @@ export class UserFormComponent implements OnInit {
         },
         () => {
           this.fg = this.fb.group(new UserModel().updateValidationRules());
+          // Load content to form
           this.fg.patchValue(this.user);
           this.initUpdatePage();
           this.loaded = true;
@@ -101,13 +104,17 @@ export class UserFormComponent implements OnInit {
       );
     });
   }
-
+/**
+ * Adding User Mode
+ **/
   private initAddPage() {
     this.layoutService.setPageTitle({ title: 'Add User' });
 
     this.loaded = true;
   }
-
+/**
+ * Update User Mode
+ **/
   private initUpdatePage() {
     this.fg.enable();
 
@@ -115,7 +122,9 @@ export class UserFormComponent implements OnInit {
       title: 'Update User: ' + this.user.fname + ' ' + this.user.lname,
     });
   }
-
+/**
+ * Save action for Adding/Updating User
+ **/
   public saveData(item: UserModel) {
     this.boxLoaded = false;
     this.loaded = false;
@@ -123,7 +132,7 @@ export class UserFormComponent implements OnInit {
   }
 
   private createFunctionality(item: UserModel) {
-
+    // Make POST to /address
     this.createAddress();
   }
 
@@ -140,6 +149,7 @@ export class UserFormComponent implements OnInit {
         console.log('error address create: ', error);
       },
       () => {
+        // Make POST to /refer
         this.createRefer();
 
       }
@@ -159,6 +169,7 @@ export class UserFormComponent implements OnInit {
         console.log('error refer create: ', error);
       },
       () => {
+        // Make POST to /cohabitant
         this.createCohabitant();
 
 
@@ -180,6 +191,7 @@ export class UserFormComponent implements OnInit {
         console.log('error cohabitant create: ', error);
       },
       () => {
+        // Make POST to /medicaldiagnosis
         this.createMedicalDiagnosis();
       }
     );
@@ -198,6 +210,7 @@ export class UserFormComponent implements OnInit {
         console.log('error medicalDiagnosises create: ', error);
       },
       () => {
+        // Make POST to /specialneed
         this.createSpecialNeed();
       }
     );
@@ -216,6 +229,7 @@ export class UserFormComponent implements OnInit {
         console.log('error specialNeed create: ', error);
       },
       () => {
+        // Make POST to /foodprep
         this.createFoodPrepFacility();
       }
     );
@@ -234,6 +248,7 @@ export class UserFormComponent implements OnInit {
         console.log('error foodPrepFacility create: ', error);
       },
       () => {
+        // Finally make POST to /user
         this.createUser();
       }
     );
@@ -243,6 +258,7 @@ export class UserFormComponent implements OnInit {
     let item = this.fg.value;
     this.userService.create(item).subscribe(
       response => {
+        // Push notification upon success or error
         this.layoutService.flashMsg({ msg: 'User has been saved successfully.', msgType: 'success' });
         this.router.navigate([`/users`]);
 
@@ -354,6 +370,10 @@ export class UserFormComponent implements OnInit {
   private getToken(): string {
     return localStorage.getItem('token');
   }
+
+  /**
+   * Restrict to Admin Only Access
+   **/
 
   public checkAdmin(id){
     if(id == 1 || id == 2){

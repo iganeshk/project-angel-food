@@ -1,17 +1,15 @@
 
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
-
 import { PageAnimation } from '../../../shared/helper';
-// import { PageAnimation } from 'modules/shared/helper';
 import { UserModel } from '../../models';
-// import { UserModel } from 'modules/user/models';
 import { UserService } from '../../services';
-// import { UserService } from 'modules/us/er/services';
 import { LayoutService } from '../../../layout/services';
-// import { LayoutService } from 'modules/layout/services';
 import { ConfirmDialogComponent } from '../../../shared/components';
-// import { ConfirmDialogComponent } from 'modules/shared/components';
+
+/**
+ * View User List Component
+ **/
 
 @Component({
   selector: 'user-list',

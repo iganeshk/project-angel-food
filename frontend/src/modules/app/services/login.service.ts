@@ -13,13 +13,17 @@ export class LoginService extends BaseService {
   constructor(protected http: Http) {
     super(http);
   }
-
+  /**
+   * Upon login, locally store the Token, Username & UserTypeID from the API response
+   **/
   login(item: LoginModel): Observable<boolean> {
     return this.__post(`login`, item)
       .map(response => {
         let res = response.json();
         if(res.success){
-          if(res.disabled)  { 
+          // Check if user credentials are disabled
+          if(res.disabled)  {
+            // Throw along with response
             throw(response);
           } else {
             localStorage.setItem('token', res['token']);

@@ -3,6 +3,10 @@ import { Router } from '@angular/router/src/router';
 
 import { LayoutService } from 'modules/layout/services';
 
+/**
+ * Dashboard Page Component
+ **/
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
