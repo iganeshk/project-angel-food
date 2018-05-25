@@ -1,5 +1,3 @@
-<!-- <textarea rows="70" style="width:98%;border:solid 1px #e6e6e6; background-color: white;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" disabled="true"> -->
-
 # Project Angel Food - Operations Software System Backend
 
 Backend API for Operation Systems Client Module.
@@ -18,7 +16,7 @@ You will need the following things properly installed on your computer.
 * Install the backend dependencies, `composer install`
 * Initialize the database with `sql\CREATE_DB_NO_FKS.sql` file
 * Configure the .env file in the backend root directory (env.example)
-Example:
+
 ```
 APP_ENV=local
 APP_DEBUG=true
@@ -40,7 +38,9 @@ APP_ENV=local
 APP_LOG_LEVEL=debug
 CACHE_DATABASE_CONNECTION=false
 ```
+
 * Note: If running MariaDB, make sure the database supports lower case
+
 ```
 [mysqld]
 lower_case_table_names = 1
@@ -53,6 +53,11 @@ lower_case_table_names = 1
 * `php -S localhost:8000 -t public`
 * Visit the API at [http://localhost:8000](http://localhost:8000)
 
+## Testing
+
+* Import Test Database `/backend/sql/angelfood_test.sql`
+
+* Use `/backend/sql/Restlet.json`
 
 ## Screenshots
 
