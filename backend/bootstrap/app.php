@@ -23,12 +23,12 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-$app->instance('path.storage', app()->basePath() . DIRECTORY_SEPARATOR . 'storage');
+// $app->instance('path.storage', app()->basePath() . DIRECTORY_SEPARATOR . 'storage');
 
 $app->withFacades();
 
 $app->withEloquent();
-$app->configure('swagger-lume');
+// $app->configure('swagger-lume');
 /*
 |--------------------------------------------------------------------------
 | Register containerr Bindings
@@ -80,7 +80,7 @@ $app->middleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-$app->register(\SwaggerLume\ServiceProvider::class);
+// $app->register(\SwaggerLume\ServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
