@@ -23,7 +23,9 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-//$app->withFacades();
+$app->instance('path.storage', app()->basePath() . DIRECTORY_SEPARATOR . 'storage');
+
+$app->withFacades();
 
 $app->withEloquent();
 $app->configure('swagger-lume');
